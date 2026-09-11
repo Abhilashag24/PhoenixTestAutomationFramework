@@ -20,7 +20,7 @@ public class FDMasterAPIRequestTest {
 // Whenever you are making post request, default content Type is application/url-formencoded
 				.then().statusCode(200).log().ifValidationFails().body("message", equalTo("Success"))
 				.time(lessThan(1000L))
-				.body(matchesJsonSchemaInClasspath("response-schema/MasterAPIresponseSchema.json"))
+				.body(matchesJsonSchemaInClasspath("response-schema/MasterAPIResponseSchema.json"))
 				.body("data", notNullValue()).body("data", hasKey("mst_oem")).body("data", hasKey("mst_model"))
 				.body("$", hasKey("message")).body("$", hasKey("data")).body("data.mst_oem.size()", equalTo(2))
 				.body("data.mst_model.size()", greaterThan(0)).body("data.mst_oem.id", everyItem(notNullValue()))
