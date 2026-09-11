@@ -1,16 +1,16 @@
 package com.api.test;
 
-import static io.restassured.RestAssured.*;
-
-import static org.hamcrest.Matchers.*;
+import static com.api.utils.ConfigManager.getProperty;
+import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.lessThan;
 
 import org.testng.annotations.Test;
 
 import com.api.pojo.UserCredentials;
-import static com.api.utils.ConfigManager.*;
 
 import io.restassured.http.ContentType;
-import static io.restassured.module.jsv.JsonSchemaValidator.*;
 
 public class FDLoginAPITest {
 	

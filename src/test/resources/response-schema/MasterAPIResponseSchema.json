@@ -1,0 +1,1332 @@
+{
+  "$schema": "https://json-schema.org/2020-12/schema",
+  "$id": "https://example.com/schemas/generated-schema.json",
+  "title": "Generated Schema",
+  "description": "Schema generated from JSON data",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "examples": [
+        "Success"
+      ],
+      "title": "Message"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "mst_oem": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Google"
+                ],
+                "title": "Name"
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "GL"
+                ],
+                "title": "Code"
+              },
+              "is_active": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Is_active"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:24:17.000Z"
+                ],
+                "title": "Created_at"
+              },
+              "modified_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:24:17.000Z"
+                ],
+                "title": "Modified_at"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "code",
+              "is_active",
+              "created_at",
+              "modified_at"
+            ],
+            "additionalProperties": false
+          },
+          "examples": [
+            [
+              {
+                "id": 1,
+                "name": "Google",
+                "code": "GL",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:24:17.000Z",
+                "modified_at": "2021-10-26T08:24:17.000Z"
+              },
+              {
+                "id": 2,
+                "name": "Apple",
+                "code": "APL",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:24:17.000Z",
+                "modified_at": "2021-10-26T08:24:17.000Z"
+              }
+            ]
+          ],
+          "title": "Mst_oem"
+        },
+        "mst_model": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Nexus 2 blue"
+                ],
+                "title": "Name"
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "NX2BL"
+                ],
+                "title": "Code"
+              },
+              "mst_product_id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Mst_product_id"
+              },
+              "is_active": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Is_active"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-29T19:28:00.000Z"
+                ],
+                "title": "Created_at"
+              },
+              "modified_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-29T19:28:00.000Z"
+                ],
+                "title": "Modified_at"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "code",
+              "mst_product_id",
+              "is_active",
+              "created_at",
+              "modified_at"
+            ],
+            "additionalProperties": false
+          },
+          "examples": [
+            [
+              {
+                "id": 1,
+                "name": "Nexus 2 blue",
+                "code": "NX2BL",
+                "mst_product_id": 1,
+                "is_active": 1,
+                "created_at": "2021-10-29T19:28:00.000Z",
+                "modified_at": "2021-10-29T19:28:00.000Z"
+              },
+              {
+                "id": 2,
+                "name": "gallexy",
+                "code": "gl",
+                "mst_product_id": 1,
+                "is_active": 1,
+                "created_at": "2022-06-10T07:18:03.000Z",
+                "modified_at": "2022-06-10T07:18:03.000Z"
+              },
+              {
+                "id": 3,
+                "name": "Iphone 11",
+                "code": "ip11",
+                "mst_product_id": 3,
+                "is_active": 1,
+                "created_at": "2022-08-18T16:59:27.000Z",
+                "modified_at": "2022-08-18T17:00:31.000Z"
+              }
+            ]
+          ],
+          "title": "Mst_model"
+        },
+        "mst_action_status": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Job Creation"
+                ],
+                "title": "Name"
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "JBC"
+                ],
+                "title": "Code"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Job Creation"
+                ],
+                "title": "Description"
+              },
+              "is_active": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Is_active"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:48:23.000Z"
+                ],
+                "title": "Created_at"
+              },
+              "modified_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:48:23.000Z"
+                ],
+                "title": "Modified_at"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "code",
+              "description",
+              "is_active",
+              "created_at",
+              "modified_at"
+            ],
+            "additionalProperties": false
+          },
+          "examples": [
+            [
+              {
+                "id": 1,
+                "name": "Job Creation",
+                "code": "JBC",
+                "description": "Job Creation",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 2,
+                "name": "Pending For Job Assignment",
+                "code": "PJFA",
+                "description": "Pending For Job Assignment",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 3,
+                "name": "Pending For Repair",
+                "code": "PFR",
+                "description": "Pending For Repair",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 4,
+                "name": "Pending For QC",
+                "code": "PFQC",
+                "description": "Pending For QC",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 5,
+                "name": "Pending for Delivery",
+                "code": "PDL",
+                "description": "Pending for Delivery",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-12-20T08:00:39.000Z"
+              },
+              {
+                "id": 6,
+                "name": "Delivered to customer",
+                "code": "DC",
+                "description": "Delivered to customer",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-12-20T08:01:48.000Z"
+              },
+              {
+                "id": 7,
+                "name": "QC Rejected",
+                "code": "QCR",
+                "description": "QC Rejected",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 8,
+                "name": "Quatation Raised",
+                "code": "QR",
+                "description": "Quatation Raised",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 9,
+                "name": "Pending For Payment",
+                "code": "PFP",
+                "description": "Pending For Payment",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 10,
+                "name": "Payment Is Done",
+                "code": "PD",
+                "description": "Payment Is Done",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 11,
+                "name": "Job Closed Successfully",
+                "code": "JC",
+                "description": "Job Closed Successfully",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 12,
+                "name": "Assigned to FST - Inbound",
+                "code": "AFI",
+                "description": "Assigned to FST - Inbound",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 13,
+                "name": "Assigned to FST - Outbound",
+                "code": "AFO",
+                "description": "Assigned to FST - Outbound",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 14,
+                "name": "Begin Journey",
+                "code": "BJY",
+                "description": "Begin Journey",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 15,
+                "name": "Submitted To FD",
+                "code": "SFD",
+                "description": "Submitted To FD",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              },
+              {
+                "id": 16,
+                "name": "Collected At FD",
+                "code": "CFD",
+                "description": "Collected At FD",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:48:23.000Z",
+                "modified_at": "2021-10-26T08:48:23.000Z"
+              }
+            ]
+          ],
+          "title": "Mst_action_status"
+        },
+        "mst_warrenty_status": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "In Warrenty"
+                ],
+                "title": "Name"
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "IW"
+                ],
+                "title": "Code"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "In Warrenty"
+                ],
+                "title": "Description"
+              },
+              "is_active": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Is_active"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:26:04.000Z"
+                ],
+                "title": "Created_at"
+              },
+              "modified_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:26:04.000Z"
+                ],
+                "title": "Modified_at"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "code",
+              "description",
+              "is_active",
+              "created_at",
+              "modified_at"
+            ],
+            "additionalProperties": false
+          },
+          "examples": [
+            [
+              {
+                "id": 1,
+                "name": "In Warrenty",
+                "code": "IW",
+                "description": "In Warrenty",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:26:04.000Z",
+                "modified_at": "2021-10-26T08:26:04.000Z"
+              },
+              {
+                "id": 2,
+                "name": "Out Of Warrenty",
+                "code": "OOW",
+                "description": "Out Of Warrenty",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:26:04.000Z",
+                "modified_at": "2021-10-26T08:26:04.000Z"
+              }
+            ]
+          ],
+          "title": "Mst_warrenty_status"
+        },
+        "mst_platform": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "FST"
+                ],
+                "title": "Name"
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "FST"
+                ],
+                "title": "Code"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Field technician will go to customer's house"
+                ],
+                "title": "Description"
+              },
+              "is_active": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Is_active"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:37:12.000Z"
+                ],
+                "title": "Created_at"
+              },
+              "modified_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:37:12.000Z"
+                ],
+                "title": "Modified_at"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "code",
+              "description",
+              "is_active",
+              "created_at",
+              "modified_at"
+            ],
+            "additionalProperties": false
+          },
+          "examples": [
+            [
+              {
+                "id": 1,
+                "name": "FST",
+                "code": "FST",
+                "description": "Field technician will go to customer's house",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:37:12.000Z",
+                "modified_at": "2021-10-26T08:37:12.000Z"
+              },
+              {
+                "id": 2,
+                "name": "Front Desk",
+                "code": "FD",
+                "description": "Customer will come to service center to submit his device",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:37:12.000Z",
+                "modified_at": "2021-10-26T08:37:12.000Z"
+              }
+            ]
+          ],
+          "title": "Mst_platform"
+        },
+        "mst_product": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Nexus 2"
+                ],
+                "title": "Name"
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "NX2"
+                ],
+                "title": "Code"
+              },
+              "mst_oem_id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Mst_oem_id"
+              },
+              "is_active": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Is_active"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-29T19:27:21.000Z"
+                ],
+                "title": "Created_at"
+              },
+              "modified_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-29T19:27:21.000Z"
+                ],
+                "title": "Modified_at"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "code",
+              "mst_oem_id",
+              "is_active",
+              "created_at",
+              "modified_at"
+            ],
+            "additionalProperties": false
+          },
+          "examples": [
+            [
+              {
+                "id": 1,
+                "name": "Nexus 2",
+                "code": "NX2",
+                "mst_oem_id": 1,
+                "is_active": 1,
+                "created_at": "2021-10-29T19:27:21.000Z",
+                "modified_at": "2021-10-29T19:27:21.000Z"
+              },
+              {
+                "id": 2,
+                "name": "Pixel",
+                "code": "gl",
+                "mst_oem_id": 1,
+                "is_active": 1,
+                "created_at": "2022-06-10T07:16:57.000Z",
+                "modified_at": "2022-08-18T16:55:02.000Z"
+              },
+              {
+                "id": 3,
+                "name": "IPhone",
+                "code": "ip",
+                "mst_oem_id": 2,
+                "is_active": 1,
+                "created_at": "2022-08-18T16:56:15.000Z",
+                "modified_at": "2022-08-18T16:57:20.000Z"
+              }
+            ]
+          ],
+          "title": "Mst_product"
+        },
+        "mst_role": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Engineer"
+                ],
+                "title": "Name"
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "ENG"
+                ],
+                "title": "Code"
+              },
+              "description": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Engineer"
+                ],
+                "title": "Description"
+              },
+              "is_active": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Is_active"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:39:48.000Z"
+                ],
+                "title": "Created_at"
+              },
+              "modified_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:39:48.000Z"
+                ],
+                "title": "Modified_at"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "code",
+              "description",
+              "is_active",
+              "created_at",
+              "modified_at"
+            ],
+            "additionalProperties": false
+          },
+          "examples": [
+            [
+              {
+                "id": 1,
+                "name": "Engineer",
+                "code": "ENG",
+                "description": "Engineer",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:39:48.000Z",
+                "modified_at": "2021-10-26T08:39:48.000Z"
+              },
+              {
+                "id": 2,
+                "name": "Supervisor",
+                "code": "SPV",
+                "description": "Supervisor",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:39:48.000Z",
+                "modified_at": "2021-10-26T08:39:48.000Z"
+              },
+              {
+                "id": 3,
+                "name": "FST",
+                "code": "FST",
+                "description": "Field Service Technician",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:39:48.000Z",
+                "modified_at": "2021-10-26T08:39:48.000Z"
+              },
+              {
+                "id": 4,
+                "name": "QC",
+                "code": "QC",
+                "description": "Quality check",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:39:48.000Z",
+                "modified_at": "2021-10-26T08:39:48.000Z"
+              },
+              {
+                "id": 5,
+                "name": "FrontDesk",
+                "code": "FD",
+                "description": "Front Desk",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:39:48.000Z",
+                "modified_at": "2022-01-04T15:16:54.000Z"
+              },
+              {
+                "id": 6,
+                "name": "Callcenter",
+                "code": "CC",
+                "description": "Callcenter",
+                "is_active": 1,
+                "created_at": "2021-10-26T08:39:48.000Z",
+                "modified_at": "2022-01-04T15:16:54.000Z"
+              }
+            ]
+          ],
+          "title": "Mst_role"
+        },
+        "mst_service_location": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Service Center A"
+                ],
+                "title": "Name"
+              },
+              "code": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "B2X"
+                ],
+                "title": "Code"
+              },
+              "mobile_number": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "8877667788"
+                ],
+                "title": "Mobile_number"
+              },
+              "email_id": {
+                "type": "string",
+                "format": "email",
+                "examples": [
+                  "servicecentera@gmail.com"
+                ],
+                "title": "Email_id"
+              },
+              "address": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "M.G. Road, Andheri(E)"
+                ],
+                "title": "Address"
+              },
+              "pincode": {
+                "type": "integer",
+                "examples": [
+                  400075
+                ],
+                "title": "Pincode"
+              },
+              "country": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "India"
+                ],
+                "title": "Country"
+              },
+              "gstin": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "22AAAAA0000A1"
+                ],
+                "title": "Gstin"
+              },
+              "is_repair_line_engineer": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Is_repair_line_engineer"
+              },
+              "is_active": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Is_active"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2021-10-26T08:30:50.000Z"
+                ],
+                "title": "Created_at"
+              },
+              "modified_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2022-04-03T16:09:58.000Z"
+                ],
+                "title": "Modified_at"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "code",
+              "mobile_number",
+              "email_id",
+              "address",
+              "pincode",
+              "country",
+              "gstin",
+              "is_repair_line_engineer",
+              "is_active",
+              "created_at",
+              "modified_at"
+            ],
+            "additionalProperties": false
+          },
+          "examples": [
+            [
+              {
+                "id": 1,
+                "name": "Service Center A",
+                "code": "B2X",
+                "mobile_number": "8877667788",
+                "email_id": "servicecentera@gmail.com",
+                "address": "M.G. Road, Andheri(E)",
+                "pincode": 400075,
+                "country": "India",
+                "gstin": "22AAAAA0000A1",
+                "is_repair_line_engineer": 1,
+                "is_active": 1,
+                "created_at": "2021-10-26T08:30:50.000Z",
+                "modified_at": "2022-04-03T16:09:58.000Z"
+              },
+              {
+                "id": 2,
+                "name": "Service Center B",
+                "code": "SFY",
+                "mobile_number": "8877667789",
+                "email_id": "servicecenterb@gmail.com",
+                "address": "M.G. Road, Andheri(E)",
+                "pincode": 400606,
+                "country": "India",
+                "gstin": "22AAAAA0000B2",
+                "is_repair_line_engineer": 1,
+                "is_active": 1,
+                "created_at": "2021-10-26T08:30:50.000Z",
+                "modified_at": "2022-04-03T16:09:59.000Z"
+              },
+              {
+                "id": 3,
+                "name": "Service Centre C",
+                "code": "PKC",
+                "mobile_number": "8877667790",
+                "email_id": "servicecenterpk@gmail.com",
+                "address": "Srinagar,Kashmir(A)",
+                "pincode": 577432,
+                "country": "India",
+                "gstin": "22AAAAA0000C3",
+                "is_repair_line_engineer": 1,
+                "is_active": 1,
+                "created_at": "2022-12-13T11:05:47.000Z",
+                "modified_at": "2022-12-13T11:05:47.000Z"
+              }
+            ]
+          ],
+          "title": "Mst_service_location"
+        },
+        "mst_problem": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Id"
+              },
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Smartphone is running slow"
+                ],
+                "title": "Name"
+              },
+              "created_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2022-01-08T10:07:18.000Z"
+                ],
+                "title": "Created_at"
+              },
+              "modified_at": {
+                "type": "string",
+                "format": "date-time",
+                "examples": [
+                  "2022-01-08T10:07:18.000Z"
+                ],
+                "title": "Modified_at"
+              }
+            },
+            "required": [
+              "id",
+              "name",
+              "created_at",
+              "modified_at"
+            ],
+            "additionalProperties": false
+          },
+          "examples": [
+            [
+              {
+                "id": 1,
+                "name": "Smartphone is running slow",
+                "created_at": "2022-01-08T10:07:18.000Z",
+                "modified_at": "2022-01-08T10:07:18.000Z"
+              },
+              {
+                "id": 2,
+                "name": "Poor battery life",
+                "created_at": "2022-01-08T10:07:18.000Z",
+                "modified_at": "2022-01-08T10:07:18.000Z"
+              },
+              {
+                "id": 3,
+                "name": "Phone or app crashes",
+                "created_at": "2022-01-08T10:07:18.000Z",
+                "modified_at": "2022-01-08T10:07:18.000Z"
+              },
+              {
+                "id": 4,
+                "name": "Sync issue",
+                "created_at": "2022-01-08T10:07:18.000Z",
+                "modified_at": "2022-01-08T10:07:18.000Z"
+              },
+              {
+                "id": 5,
+                "name": "MicroSD card is not working on your phone",
+                "created_at": "2022-01-08T10:07:18.000Z",
+                "modified_at": "2022-01-08T10:07:18.000Z"
+              },
+              {
+                "id": 6,
+                "name": "Overheating",
+                "created_at": "2022-01-08T10:07:18.000Z",
+                "modified_at": "2022-01-08T10:07:18.000Z"
+              },
+              {
+                "id": 7,
+                "name": "Connecting problem with Bluetooth, Wifi, Cellular network",
+                "created_at": "2022-01-08T10:07:19.000Z",
+                "modified_at": "2022-01-08T10:07:19.000Z"
+              },
+              {
+                "id": 8,
+                "name": "Cracked screen",
+                "created_at": "2022-01-08T10:07:19.000Z",
+                "modified_at": "2022-01-08T10:07:19.000Z"
+              },
+              {
+                "id": 9,
+                "name": "Other",
+                "created_at": "2022-01-08T10:07:19.000Z",
+                "modified_at": "2022-01-08T10:07:19.000Z"
+              },
+              {
+                "id": 10,
+                "name": "Camera issue",
+                "created_at": "2022-06-13T15:01:02.000Z",
+                "modified_at": "2022-06-13T15:01:02.000Z"
+              },
+              {
+                "id": 11,
+                "name": "Charger Not Working",
+                "created_at": "2022-08-14T12:38:04.000Z",
+                "modified_at": "2022-08-14T12:38:04.000Z"
+              },
+              {
+                "id": 12,
+                "name": " Software Booting Issue ",
+                "created_at": "2022-08-14T13:03:08.000Z",
+                "modified_at": "2022-08-14T13:03:08.000Z"
+              },
+              {
+                "id": 15,
+                "name": "Head Phone Jack not working",
+                "created_at": "2022-06-16T15:22:18.000Z",
+                "modified_at": "2022-06-16T15:22:18.000Z"
+              },
+              {
+                "id": 16,
+                "name": "Head Phone issue",
+                "created_at": "2022-06-16T15:27:47.000Z",
+                "modified_at": "2022-06-16T15:27:47.000Z"
+              },
+              {
+                "id": 17,
+                "name": "Random Problem",
+                "created_at": "2022-07-11T02:56:01.000Z",
+                "modified_at": "2022-07-11T02:56:01.000Z"
+              },
+              {
+                "id": 19,
+                "name": "Front camera not working",
+                "created_at": "2022-07-13T17:50:54.000Z",
+                "modified_at": "2022-07-13T17:50:54.000Z"
+              },
+              {
+                "id": 20,
+                "name": "Battery issue",
+                "created_at": "2022-07-13T17:51:47.000Z",
+                "modified_at": "2022-07-13T17:51:47.000Z"
+              },
+              {
+                "id": 22,
+                "name": "Screen display issue",
+                "created_at": "2022-08-29T11:09:24.000Z",
+                "modified_at": "2022-08-29T11:09:24.000Z"
+              },
+              {
+                "id": 24,
+                "name": "Apps Not Downloading",
+                "created_at": "2022-08-29T12:10:34.000Z",
+                "modified_at": "2022-08-29T12:10:34.000Z"
+              },
+              {
+                "id": 26,
+                "name": "Unresponsive screen",
+                "created_at": "2022-09-19T10:03:08.000Z",
+                "modified_at": "2022-09-19T10:03:08.000Z"
+              },
+              {
+                "id": 27,
+                "name": "Blue Screen Error",
+                "created_at": "2022-12-13T11:01:48.000Z",
+                "modified_at": "2022-12-13T11:01:48.000Z"
+              },
+              {
+                "id": 28,
+                "name": "PK Test Prob1",
+                "created_at": "2022-12-19T20:42:09.000Z",
+                "modified_at": "2022-12-19T20:42:09.000Z"
+              },
+              {
+                "id": 29,
+                "name": "PK Test Prob1",
+                "created_at": "2022-12-19T20:42:09.000Z",
+                "modified_at": "2022-12-19T20:42:09.000Z"
+              }
+            ]
+          ],
+          "title": "Mst_problem"
+        },
+        "map_fst_pincode": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pincode": {
+                "type": "integer",
+                "examples": [
+                  100011
+                ],
+                "title": "Pincode"
+              },
+              "mst_service_location_id": {
+                "type": "integer",
+                "examples": [
+                  1
+                ],
+                "title": "Mst_service_location_id"
+              },
+              "mst_service_location_name": {
+                "type": "string",
+                "minLength": 1,
+                "examples": [
+                  "Service Center A"
+                ],
+                "title": "Mst_service_location_name"
+              }
+            },
+            "required": [
+              "pincode",
+              "mst_service_location_id",
+              "mst_service_location_name"
+            ],
+            "additionalProperties": false
+          },
+          "examples": [
+            [
+              {
+                "pincode": 100011,
+                "mst_service_location_id": 1,
+                "mst_service_location_name": "Service Center A"
+              },
+              {
+                "pincode": 100012,
+                "mst_service_location_id": 1,
+                "mst_service_location_name": "Service Center A"
+              },
+              {
+                "pincode": 100013,
+                "mst_service_location_id": 1,
+                "mst_service_location_name": "Service Center A"
+              },
+              {
+                "pincode": 100014,
+                "mst_service_location_id": 1,
+                "mst_service_location_name": "Service Center A"
+              },
+              {
+                "pincode": 100015,
+                "mst_service_location_id": 1,
+                "mst_service_location_name": "Service Center A"
+              },
+              {
+                "pincode": 200011,
+                "mst_service_location_id": 2,
+                "mst_service_location_name": "Service Center B"
+              },
+              {
+                "pincode": 200012,
+                "mst_service_location_id": 2,
+                "mst_service_location_name": "Service Center B"
+              },
+              {
+                "pincode": 200013,
+                "mst_service_location_id": 2,
+                "mst_service_location_name": "Service Center B"
+              },
+              {
+                "pincode": 200014,
+                "mst_service_location_id": 2,
+                "mst_service_location_name": "Service Center B"
+              },
+              {
+                "pincode": 200015,
+                "mst_service_location_id": 2,
+                "mst_service_location_name": "Service Center B"
+              },
+              {
+                "pincode": 400065,
+                "mst_service_location_id": 1,
+                "mst_service_location_name": "Service Center A"
+              }
+            ]
+          ],
+          "title": "Map_fst_pincode"
+        }
+      },
+      "required": [
+        "mst_oem",
+        "mst_model",
+        "mst_action_status",
+        "mst_warrenty_status",
+        "mst_platform",
+        "mst_product",
+        "mst_role",
+        "mst_service_location",
+        "mst_problem",
+        "map_fst_pincode"
+      ],
+      "additionalProperties": false,
+      "title": "Data"
+    }
+  },
+  "required": [
+    "message",
+    "data"
+  ],
+  "additionalProperties": false
+}

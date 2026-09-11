@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/2020-12/schema",
+  "$id": "https://example.com/schemas/generated-schema.json",
+  "title": "Generated Schema",
+  "description": "Schema generated from JSON data",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "examples": [
+        "Success"
+      ],
+      "title": "Message"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "examples": [
+              "Pending for delivery"
+            ],
+            "title": "Label"
+          },
+          "key": {
+            "type": "string",
+            "minLength": 1,
+            "examples": [
+              "pending_for_delivery"
+            ],
+            "title": "Key"
+          },
+          "count": {
+            "type": "integer",
+            "examples": [
+              0
+            ],
+            "title": "Count"
+          }
+        },
+        "required": [
+          "label",
+          "key",
+          "count"
+        ],
+        "additionalProperties": false
+      },
+      "examples": [
+        [
+          {
+            "label": "Pending for delivery",
+            "key": "pending_for_delivery",
+            "count": 0
+          },
+          {
+            "label": "Created today",
+            "key": "created_today",
+            "count": 60
+          },
+          {
+            "label": "Pending for FST assignment",
+            "key": "pending_fst_assignment",
+            "count": 0
+          }
+        ]
+      ],
+      "title": "Data"
+    }
+  },
+  "required": [
+    "message",
+    "data"
+  ],
+  "additionalProperties": false
+}

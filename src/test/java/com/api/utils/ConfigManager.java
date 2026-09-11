@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class ConfigManager {
+public final class ConfigManager {
 
 	// Write a program to read properties file from
 	// src/test/resources/config/config.properties
