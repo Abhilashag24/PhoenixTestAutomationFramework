@@ -15,7 +15,7 @@ public class FDMasterAPIRequestTest {
 
 	@Test
 	public void masterAPITest() {
-		given().baseUri(getProperty("BASE_URI")).and().contentType("").and().headers("Authorization", getToken(Role.FD))
+		given().baseUri(getProperty("BASE_URI")).and().contentType("").and().headers("Authorization", getToken(Role.FD)).log().uri()
 				.when().post("/master")
 // Whenever you are making post request, default content Type is application/url-formencoded
 				.then().statusCode(200).log().ifValidationFails().body("message", equalTo("Success"))
