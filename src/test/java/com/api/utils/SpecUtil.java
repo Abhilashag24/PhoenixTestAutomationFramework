@@ -16,7 +16,7 @@ import io.restassured.specification.ResponseSpecification;
 
 public class SpecUtil {
 
-	public static RequestSpecification requestSpec(Role role) {
+	public static RequestSpecification requestSpecWithAuthToken(Role role) {
 		RequestSpecification request = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
 				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).addHeader("Authorization", getToken(FD))
 				.log(LogDetail.URI).log(LogDetail.METHOD).log(LogDetail.HEADERS).log(LogDetail.BODY).build();
@@ -27,8 +27,17 @@ public class SpecUtil {
 	// POST -- PUT -- PATCH (Body)
 	public static RequestSpecification requestSpec(Object payload) {
 		RequestSpecification request = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
-				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(payload)
-				.log(LogDetail.URI).log(LogDetail.METHOD).log(LogDetail.HEADERS).log(LogDetail.BODY).build();
+				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(payload).log(LogDetail.URI)
+				.log(LogDetail.METHOD).log(LogDetail.HEADERS).log(LogDetail.BODY).build();
+
+		return request;
+	}
+
+	public static RequestSpecification requestSpecWithAuthToken(Role role, Object payload) {
+		RequestSpecification request = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
+				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).addHeader("Authorization", getToken(FD))
+				.setBody(payload).log(LogDetail.URI).log(LogDetail.METHOD).log(LogDetail.HEADERS).log(LogDetail.BODY)
+				.build();
 
 		return request;
 	}
@@ -49,6 +58,7 @@ public class SpecUtil {
 
 		return responseSpecification;
 	}
+
 	public static ResponseSpecification responseSpec_JSON(int statusCode) {
 		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectStatusCode(statusCode)
 				.expectResponseTime(Matchers.lessThan(1000L)).expectContentType(ContentType.JSON).log(LogDetail.ALL)
@@ -56,11 +66,10 @@ public class SpecUtil {
 
 		return responseSpecification;
 	}
-	
+
 	public static ResponseSpecification responseSpec_TEXT(int statusCode) {
 		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectStatusCode(statusCode)
-				.expectResponseTime(Matchers.lessThan(1000L)).log(LogDetail.ALL)
-				.build();
+				.expectResponseTime(Matchers.lessThan(1000L)).log(LogDetail.ALL).build();
 
 		return responseSpecification;
 	}
