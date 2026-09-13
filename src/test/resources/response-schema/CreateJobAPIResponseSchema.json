@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/2020-12/schema",
+  "$id": "https://example.com/schemas/generated-schema.json",
+  "title": "Generated Schema",
+  "description": "Schema generated from JSON data",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string",
+      "minLength": 1,
+      "examples": [
+        "Job created successfully. "
+      ],
+      "title": "Message"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "examples": [
+            421314
+          ],
+          "title": "Id"
+        },
+        "mst_service_location_id": {
+          "type": "integer",
+          "examples": [
+            1
+          ],
+          "title": "Mst_service_location_id"
+        },
+        "mst_platform_id": {
+          "type": "integer",
+          "examples": [
+            2
+          ],
+          "title": "Mst_platform_id"
+        },
+        "mst_warrenty_status_id": {
+          "type": "integer",
+          "examples": [
+            1
+          ],
+          "title": "Mst_warrenty_status_id"
+        },
+        "mst_oem_id": {
+          "type": "integer",
+          "examples": [
+            1
+          ],
+          "title": "Mst_oem_id"
+        },
+        "tr_customer_id": {
+          "type": "integer",
+          "examples": [
+            421333
+          ],
+          "title": "Tr_customer_id"
+        },
+        "tr_customer_product_id": {
+          "type": "integer",
+          "examples": [
+            421323
+          ],
+          "title": "Tr_customer_product_id"
+        },
+        "job_number": {
+          "type": "string",
+          "minLength": 1,
+          "examples": [
+            "JOB_421314"
+          ],
+          "title": "Job_number"
+        }
+      },
+      "required": [
+        "id",
+        "mst_service_location_id",
+        "mst_platform_id",
+        "mst_warrenty_status_id",
+        "mst_oem_id",
+        "tr_customer_id",
+        "tr_customer_product_id",
+        "job_number"
+      ],
+      "additionalProperties": false,
+      "title": "Data"
+    }
+  },
+  "required": [
+    "message",
+    "data"
+  ],
+  "additionalProperties": false
+}
