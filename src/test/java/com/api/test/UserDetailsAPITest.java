@@ -14,7 +14,7 @@ public class UserDetailsAPITest {
 	public void userDetailsAPITest() {
 		
 		given()
-		.spec(SpecUtil.requestSpec(FD))
+		.spec(SpecUtil.requestSpecWithAuthToken(FD))
 		.when()
 		.get("/userdetails")
 		.then()

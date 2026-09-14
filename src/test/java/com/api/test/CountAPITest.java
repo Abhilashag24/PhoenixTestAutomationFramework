@@ -22,7 +22,7 @@ public class CountAPITest {
 	@Test
 	public void verifyCountAPIResponse() {
 		given()
-			.spec(SpecUtil.requestSpec(FD))
+			.spec(SpecUtil.requestSpecWithAuthToken(FD))
 			.when()
 			.get("/dashboard/count")
 			.then()
