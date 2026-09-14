@@ -11,16 +11,16 @@ import static org.hamcrest.Matchers.notNullValue;
 
 import org.testng.annotations.Test;
 
-import com.api.utils.SpecUtil;
+import static com.api.utils.SpecUtil.*;
 
 public class FDMasterAPIRequestTest {
 
-	@Test
+	@Test(description = "Verifying if Master API is giving correct response", groups = { "api", "regression", "smoke" })
 	public void masterAPITest() {
-		given().spec(SpecUtil.requestSpecWithAuthToken(FD))
+		given().spec(requestSpecWithAuthToken(FD))
 				.when().post("/master")
 // Whenever you are making post request, default content Type is application/url-formencoded
-				.then().spec(SpecUtil.responseSpec_OK()).body("message", equalTo("Success"))
+				.then().spec(responseSpec_OK()).body("message", equalTo("Success"))
 				.body(matchesJsonSchemaInClasspath("response-schema/MasterAPIResponseSchema.json"))
 				.body("data", notNullValue()).body("data", hasKey("mst_oem")).body("data", hasKey("mst_model"))
 				.body("$", hasKey("message")).body("$", hasKey("data")).body("data.mst_oem.size()", equalTo(2))
@@ -29,11 +29,12 @@ public class FDMasterAPIRequestTest {
 
 	}
 
-	@Test
+	@Test (description = "Verifying if Master API is giving correct status for Invalid Token", groups = { "api","negative", "regression", "smoke" })
+
 	public void invalidTokenMasterAPITest() {
-		given().spec(SpecUtil.requestSpec()).when()
+		given().spec(requestSpec()).when()
 				.post("/master") 
-				.then().spec(SpecUtil.responseSpec_TEXT(401));
+				.then().spec(responseSpec_TEXT(401));
 	}
 
 }

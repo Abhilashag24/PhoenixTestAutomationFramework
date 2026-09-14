@@ -13,39 +13,24 @@ import static org.hamcrest.Matchers.notNullValue;
 
 import org.testng.annotations.Test;
 
-import com.api.utils.SpecUtil;
+import static com.api.utils.SpecUtil.*;
 
 public class CountAPITest {
 
-	
-	
-	@Test
+	@Test(description = "Verifying if Count API is working for FD user", groups = { "api", "regression", "smoke" })
 	public void verifyCountAPIResponse() {
-		given()
-			.spec(SpecUtil.requestSpecWithAuthToken(FD))
-			.when()
-			.get("/dashboard/count")
-			.then()
-			.spec(SpecUtil.responseSpec_OK())
-			.body("message", equalTo("Success"))
-			.and()
-			.body("data", notNullValue())
-			.and()
-			.body("data.size()",equalTo(3))
-			.body("data.count", everyItem(greaterThanOrEqualTo(0)))
-			.body("data.label",everyItem(not(blankOrNullString())))
-			.body(matchesJsonSchemaInClasspath("response-schema/CountAPIResponseSchema-FD.json"))
-			.body("data.key",containsInAnyOrder("pending_for_delivery","created_today","pending_fst_assignment"));
+		given().spec(requestSpecWithAuthToken(FD)).when().get("/dashboard/count").then()
+				.spec(responseSpec_OK()).body("message", equalTo("Success")).and().body("data", notNullValue())
+				.and().body("data.size()", equalTo(3)).body("data.count", everyItem(greaterThanOrEqualTo(0)))
+				.body("data.label", everyItem(not(blankOrNullString())))
+				.body(matchesJsonSchemaInClasspath("response-schema/CountAPIResponseSchema-FD.json")).body("data.key",
+						containsInAnyOrder("pending_for_delivery", "created_today", "pending_fst_assignment"));
 	}
-	
-	
-	@Test
+
+	@Test(description = "Verifying if Count API is giving correct status for Invalid Token", groups = { "api",
+			"regression", "smoke" ,"negative"})
 	public void countAPITest_MissingAuthToken() {
-		given()
-		.spec(SpecUtil.requestSpec())
-		.when()
-		.get("/dashboard/count")
-		.then()
-		.spec(SpecUtil.responseSpec_TEXT(401));
+		given().spec(requestSpec()).when().get("/dashboard/count").then()
+				.spec(responseSpec_TEXT(401));
 	}
 }

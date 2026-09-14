@@ -6,19 +6,20 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 
 import org.testng.annotations.Test;
 
-import com.api.utils.SpecUtil;
+import static com.api.utils.SpecUtil.*;
 
 public class UserDetailsAPITest {
 	
-	@Test
+	@Test(description = "Verifying if userDetails API response is shown correctly", groups = { "api", "regression", "smoke" })
+
 	public void userDetailsAPITest() {
 		
 		given()
-		.spec(SpecUtil.requestSpecWithAuthToken(FD))
+		.spec(requestSpecWithAuthToken(FD))
 		.when()
 		.get("/userdetails")
 		.then()
-		.spec(SpecUtil.responseSpec_OK())
+		.spec(responseSpec_OK())
 		.and()
 		.body(matchesJsonSchemaInClasspath("response-schema/UserDetailsSchema.json"));
 				
