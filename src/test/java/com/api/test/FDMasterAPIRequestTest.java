@@ -17,7 +17,7 @@ public class FDMasterAPIRequestTest {
 
 	@Test
 	public void masterAPITest() {
-		given().spec(SpecUtil.requestSpec(FD))
+		given().spec(SpecUtil.requestSpecWithAuthToken(FD))
 				.when().post("/master")
 // Whenever you are making post request, default content Type is application/url-formencoded
 				.then().spec(SpecUtil.responseSpec_OK()).body("message", equalTo("Success"))
