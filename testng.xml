@@ -2,13 +2,15 @@
 
 <suite name="Phoenix API Test Suite" verbose="1">
 
-    <test name="Inwarranty Flow">
-        <classes>
-            <class name="com.api.test.FDLoginAPITest"/>
-            <class name="com.api.test.UserDetailsAPITest"/>
-            <class name="com.api.test.CountAPITest"/>
-            <class name="com.api.test.FDMasterAPIRequestTest"/>
-        </classes>
-    </test>
+	<test name="Inwarranty Flow">
+		<classes>
+			<class name="com.api.test.FDLoginAPITest" />
+			<class name="com.api.test.UserDetailsAPITest" />
+			<class name="com.api.test.CountAPITest" />
+			<class name="com.api.test.FDMasterAPIRequestTest" />
+			<class name="com.api.test.CreateJobAPITest" />
+
+		</classes>
+	</test>
 
 </suite>
