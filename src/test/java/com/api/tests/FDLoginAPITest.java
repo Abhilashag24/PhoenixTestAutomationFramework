@@ -1,4 +1,4 @@
-package com.api.test;
+package com.api.tests;
 
 import static com.api.utils.SpecUtil.requestSpec;
 import static com.api.utils.SpecUtil.responseSpec_OK;
