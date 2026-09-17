@@ -15,7 +15,7 @@ import com.api.request.model.CreateJobPayload;
 public class CreateJobAPIFakerDataDrivenTest {
 
 	@Test(description = "Verifying if Create Job API is able to create In-Warranty Jobs", groups = { "api",
-			"regression","smoke","datadriven" }, 
+			"regression","smoke","datadriven","faker" }, 
 			dataProviderClass = com.dataproviders.DataProviderUtils.class,
 			dataProvider = "CreateJobAPIFakerDataProvider")
 	public void createJobAPITest(CreateJobPayload createJobPayload) {

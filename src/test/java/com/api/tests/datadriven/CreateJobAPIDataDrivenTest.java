@@ -31,7 +31,7 @@ public class CreateJobAPIDataDrivenTest {
 
 	@Test(description = "Verifying if Create Job API is able to create In-Warranty Jobs", groups = { "api",
 			"regression",
-			"smoke","datadriven" }, dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIDataProvider")
+			"smoke","datadriven","csv"}, dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIDataProvider")
 	public void createJobAPITest(CreateJobPayload createJobPayload) {
 
 		given().spec(requestSpecWithAuthToken(FD, createJobPayload)).when().post("/job/create").then()
