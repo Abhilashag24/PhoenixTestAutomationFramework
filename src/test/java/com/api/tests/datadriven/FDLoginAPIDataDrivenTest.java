@@ -12,12 +12,8 @@ import com.dataproviders.api.bean.UserBean;
 
 public class FDLoginAPIDataDrivenTest {
 
-
-	@Test(description = "Verifying if login api is working for FD user",
-			groups = { "api", "regression", "datadriven" },
-			dataProviderClass = com.dataproviders.DataProviderUtils.class,
-	dataProvider = "loginAPIDataProvider"
-	)
+	@Test(description = "Verifying if login api is working for FD user", groups = { "api", "regression",
+			"datadriven" }, dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "loginAPIDataProvider")
 
 	public void loginAPITest(UserBean userBean) {
 
