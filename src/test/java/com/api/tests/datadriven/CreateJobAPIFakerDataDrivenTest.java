@@ -1,37 +1,23 @@
 package com.api.tests.datadriven;
 
 import static com.api.constants.Role.FD;
-import static com.api.utils.DateTimeUtility.getTimeWithDaysAgo;
+import static com.api.utils.SpecUtil.requestSpecWithAuthToken;
+import static com.api.utils.SpecUtil.responseSpec_OK;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.api.constants.Model;
-import com.api.constants.OEM;
-import com.api.constants.Platform;
-import com.api.constants.Problem;
-import com.api.constants.Product;
-import com.api.constants.ServiceLocation;
-import com.api.constants.Warranty_Status;
 import com.api.request.model.CreateJobPayload;
-import com.api.request.model.Customer;
-import com.api.request.model.CustomerAddress;
-import com.api.request.model.CustomerProduct;
-import com.api.request.model.Problems;
-import static com.api.utils.SpecUtil.*;
 
-public class CreateJobAPIDataDrivenTest {
+public class CreateJobAPIFakerDataDrivenTest {
 
 	@Test(description = "Verifying if Create Job API is able to create In-Warranty Jobs", groups = { "api",
-			"regression",
-			"smoke","datadriven","csv"}, dataProviderClass = com.dataproviders.DataProviderUtils.class, dataProvider = "CreateJobAPIDataProvider")
+			"regression","smoke","datadriven","faker" }, 
+			dataProviderClass = com.dataproviders.DataProviderUtils.class,
+			dataProvider = "CreateJobAPIFakerDataProvider")
 	public void createJobAPITest(CreateJobPayload createJobPayload) {
 
 		given().spec(requestSpecWithAuthToken(FD, createJobPayload)).when().post("/job/create").then()
