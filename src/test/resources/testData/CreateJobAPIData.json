@@ -1,0 +1,131 @@
+[
+	{
+	    "mst_service_location_id": 0,
+	    "mst_platform_id": 2,
+	    "mst_warrenty_status_id": 1,
+	    "mst_oem_id": 1,
+	    "customer": {
+	        "first_name": "Jayde",
+	        "last_name": "Collins",
+	        "mobile_number": "677-806-1382",
+	        "mobile_number_alt": "",
+	        "email_id": "Marco.Rohan@hotmail.com",
+	        "email_id_alt": ""
+	    },
+	    "customer_address": {
+	        "flat_number": "10",
+	        "apartment_name": "Test apartment",
+	        "street_name": "test street name",
+	        "landmark": "test landmark",
+	        "area": "test area",
+	        "pincode": "786543",
+	        "country": "India",
+	        "state": "Madhya Pradesh"
+	    },
+	    "customer_product": {
+	        "dop": "2026-04-30T20:00:00.000Z",
+	        "serial_number": "13953990451644",
+	        "imei1": "13953990451644",
+	        "imei2": "13953990451644",
+	        "popurl": "2026-04-30T20:00:00.000Z",
+	        "product_id": 1,
+	        "mst_model_id": 2
+	    },
+	    "problems": [
+	        {
+	            "id": 1,
+	            "remark": "handset overheats even after minimal usage."
+	        },
+			{
+			            "id": 2,
+			            "remark": "Not Working"
+			        }
+	    ]
+	},
+	
+	{
+	    "mst_service_location_id": 0,
+	    "mst_platform_id": 2,
+	    "mst_warrenty_status_id": 1,
+	    "mst_oem_id": 1,
+	    "customer": {
+	        "first_name": "Jayde",
+	        "last_name": "Collins",
+	        "mobile_number": "677-806-1382",
+	        "mobile_number_alt": "",
+	        "email_id": "Marco.Rohan@hotmail.com",
+	        "email_id_alt": ""
+	    },
+	    "customer_address": {
+	        "flat_number": "10",
+	        "apartment_name": "Test apartment",
+	        "street_name": "test street name",
+	        "landmark": "test landmark",
+	        "area": "test area",
+	        "pincode": "786543",
+	        "country": "India",
+	        "state": "Madhya Pradesh"
+	    },
+	    "customer_product": {
+	        "dop": "2026-04-30T20:00:00.000Z",
+	        "serial_number": "13953990451756",
+	        "imei1": "13953990451756",
+	        "imei2": "13953990451756",
+	        "popurl": "2026-04-30T20:00:00.000Z",
+	        "product_id": 1,
+	        "mst_model_id": 2
+	    },
+	    "problems": [
+	        {
+	            "id": 3,
+	            "remark": "Over Heating."
+	        },
+			{
+			            "id": 2,
+			            "remark": "Not Working"
+			        }
+	    ]
+	},
+	
+	{
+	    "mst_service_location_id": 0,
+	    "mst_platform_id": 2,
+	    "mst_warrenty_status_id": 1,
+	    "mst_oem_id": 1,
+	    "customer": {
+	        "first_name": "Jayde",
+	        "last_name": "Collins",
+	        "mobile_number": "677-806-1382",
+	        "mobile_number_alt": "",
+	        "email_id": "Marco.Rohan@hotmail.com",
+	        "email_id_alt": ""
+	    },
+	    "customer_address": {
+	        "flat_number": "10",
+	        "apartment_name": "Test apartment",
+	        "street_name": "test street name",
+	        "landmark": "test landmark",
+	        "area": "test area",
+	        "pincode": "786543",
+	        "country": "India",
+	        "state": "Madhya Pradesh"
+	    },
+	    "customer_product": {
+	        "dop": "2026-04-30T20:00:00.000Z",
+	        "serial_number": "13953880451644",
+	        "imei1": "13953880451644",
+	        "imei2": "13953880451644",
+	        "popurl": "2026-04-30T20:00:00.000Z",
+	        "product_id": 1,
+	        "mst_model_id": 2
+	    },
+	    "problems": [
+	        {
+	            "id": 1,
+	            "remark": "handset overheats even after minimal usage."
+	        }
+			
+	    ]
+	}
+	
+]

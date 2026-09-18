@@ -8,9 +8,11 @@ import java.util.List;
 import org.testng.annotations.DataProvider;
 
 import com.api.request.model.CreateJobPayload;
+import com.api.request.model.UserCredentials;
 import com.api.utils.CSVReaderUtility;
 import com.api.utils.CreateJobBeanMapper;
 import com.api.utils.FakerDataGenerator;
+import com.api.utils.JsonReaderUtil;
 import com.dataproviders.api.bean.CreateJobBean;
 import com.dataproviders.api.bean.UserBean;
 
@@ -21,6 +23,14 @@ public class DataProviderUtils {
 		// data Providers can usually return [], [][], Iterator<>
 
 		return CSVReaderUtility.loadCSV("testData/logincreds.csv", UserBean.class);
+
+	}
+
+	@DataProvider(name = "loginAPIJsonDataProvider", parallel = true)
+	public static Iterator<UserCredentials> loginAPIJsonsDataProvider() {
+		// data Providers can usually return [], [][], Iterator<>
+
+		return JsonReaderUtil.loadJSON("testData/loginAPIData.json", UserCredentials[].class);
 
 	}
 
@@ -41,14 +51,20 @@ public class DataProviderUtils {
 		}
 		return payloadList.iterator();
 	}
-	
-	
+
+	@DataProvider(name = "CreateJobAPIJsonDataProvider", parallel = true)
+	public static Iterator<CreateJobPayload> createJobAPIJsonDataProvider() {
+		// data Providers can usually return [], [][], Iterator<>
+
+		return JsonReaderUtil.loadJSON("testData/CreateJobAPIData.json", CreateJobPayload[].class);
+
+	}
 
 	@DataProvider(name = "CreateJobAPIFakerDataProvider", parallel = true)
 	public static Iterator<CreateJobPayload> createJobAPIFakerDataProvider() {
-		String fakerCount = System.getProperty("fakerCount","5");
+		String fakerCount = System.getProperty("fakerCount", "5");
 		int fakeCount = Integer.parseInt(fakerCount);
-	Iterator<CreateJobPayload> payloadIterator=	FakerDataGenerator.generateFakeCreateJobData(fakeCount);
+		Iterator<CreateJobPayload> payloadIterator = FakerDataGenerator.generateFakeCreateJobData(fakeCount);
 		return payloadIterator;
 	}
 
