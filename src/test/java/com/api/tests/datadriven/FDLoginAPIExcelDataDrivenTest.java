@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.Test;
 
-import com.api.request.model.UserCredentials;
+import com.dataproviders.api.bean.UserBean;
 
 public class FDLoginAPIExcelDataDrivenTest {
 
@@ -16,9 +16,9 @@ public class FDLoginAPIExcelDataDrivenTest {
 			"datadriven" }, dataProviderClass = com.dataproviders.DataProviderUtils.class,
 			dataProvider = "loginAPIExcelDataProvider")
 
-	public void loginAPITest(UserCredentials userCredentials) {
+	public void loginAPITest(UserBean userBean) {
 
-		given().spec(requestSpec(userCredentials)).when().post("/login").then().spec(responseSpec_OK())
+		given().spec(requestSpec(userBean)).when().post("/login").then().spec(responseSpec_OK())
 				.body("message", equalTo("Success")).and()
 				.body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json"));
 	}

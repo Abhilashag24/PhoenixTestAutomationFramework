@@ -5,10 +5,20 @@
 	<test name="Inwarranty Flow - Data Driven Tests">
 		<classes>
 			<class name="com.api.tests.datadriven.FDLoginAPIDataDrivenTest" />
-			<class name="com.api.tests.datadriven.CreateJobAPIDataDrivenTest" />			
-			<class name="com.api.tests.datadriven.CreateJobAPIFakerDataDrivenTest" />
-			<class name="com.api.tests.datadriven.FDLoginAPIJsonDataDrivenTest" />
-			<class name="com.api.tests.datadriven.CreateJobAPIJsonDataDrivenTest" />
+			<class
+				name="com.api.tests.datadriven.CreateJobAPIDataDrivenTest" />
+			<class
+				name="com.api.tests.datadriven.CreateJobAPIFakerDataDrivenTest" />
+			<class
+				name="com.api.tests.datadriven.FDLoginAPIJsonDataDrivenTest" />
+			<class
+				name="com.api.tests.datadriven.CreateJobAPIJsonDataDrivenTest" />
+			<class
+				name="com.api.tests.datadriven.FDLoginAPIExcelDataDrivenTest" />
+
+			<class
+				name="com.api.tests.datadriven.CreateJobAPIExcelDataDrivenTest" />
+
 		</classes>
 	</test>
 
