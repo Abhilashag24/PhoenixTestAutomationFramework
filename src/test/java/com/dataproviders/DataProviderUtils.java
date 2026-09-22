@@ -14,6 +14,7 @@ import com.api.utils.CreateJobBeanMapper;
 import com.api.utils.ExcelReaderUtil;
 import com.api.utils.FakerDataGenerator;
 import com.api.utils.JsonReaderUtil;
+import com.database.dao.CreateJobPayloadDataDao;
 import com.dataproviders.api.bean.CreateJobBean;
 import com.dataproviders.api.bean.UserBean;
 
@@ -34,12 +35,12 @@ public class DataProviderUtils {
 		return JsonReaderUtil.loadJSON("testData/loginAPIData.json", UserCredentials[].class);
 
 	}
-	
+
 	@DataProvider(name = "loginAPIExcelDataProvider", parallel = true)
 	public static Iterator<UserBean> loginAPIExcelDataProvider() {
 		// data Providers can usually return [], [][], Iterator<>
 
-		return ExcelReaderUtil.loadExcelTestData("testData/PhoenixTestData.xlsx","LoginTestData",UserBean.class);
+		return ExcelReaderUtil.loadExcelTestData("testData/PhoenixTestData.xlsx", "LoginTestData", UserBean.class);
 
 	}
 
@@ -76,7 +77,7 @@ public class DataProviderUtils {
 		Iterator<CreateJobPayload> payloadIterator = FakerDataGenerator.generateFakeCreateJobData(fakeCount);
 		return payloadIterator;
 	}
-	
+
 	@DataProvider(name = "CreateJobAPIExcelDataProvider", parallel = true)
 	public static Iterator<CreateJobPayload> createJobAPIExcelDataProvider() {
 		// data Providers can usually return [], [][], Iterator<>
@@ -93,6 +94,19 @@ public class DataProviderUtils {
 
 		}
 		return payloadList.iterator();
+	}
+
+	@DataProvider(name = "CreateJobAPIDBDataProvider", parallel = true)
+
+	public static Iterator<CreateJobPayload> CreateJobAPIDBDataProvider() {
+		List<CreateJobBean> beanList = CreateJobPayloadDataDao.getCreatePayloadData();
+		List<CreateJobPayload> createJobPayloads = new ArrayList<CreateJobPayload>();
+
+		for (CreateJobBean bean : beanList) {
+			CreateJobPayload createJobPayload = CreateJobBeanMapper.mapper(bean);
+			createJobPayloads.add(createJobPayload);
+		}
+		return createJobPayloads.iterator();
 	}
 
 }
