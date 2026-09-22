@@ -29,24 +29,25 @@ public class HikariCPDemo {
 		hikariConfig.setMaxLifetime(1800000);
 		hikariConfig.setPoolName("Phoenix Test Automation Framework");
 		
-		HikariDataSource dataSource = new HikariDataSource(hikariConfig);
-		try {
-			conn = dataSource.getConnection();
-			Statement statement = conn.createStatement();
-			 ResultSet resultSet = statement.executeQuery("select first_name , last_name , mobile_number  from tr_customer");
-			
-			
-			  while (resultSet.next()) {
-			  System.out.println(resultSet.getString("first_name"));
-			  System.out.println(resultSet.getString("last_name"));
-			  System.out.println(resultSet.getString("mobile_number"));
-			  
-			  }
-			 
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		try (HikariDataSource dataSource = new HikariDataSource(hikariConfig)) {
+			try {
+				conn = dataSource.getConnection();
+				Statement statement = conn.createStatement();
+				 ResultSet resultSet = statement.executeQuery("select first_name , last_name , mobile_number  from tr_customer");
+				
+				
+				  while (resultSet.next()) {
+				  System.out.println(resultSet.getString("first_name"));
+				  System.out.println(resultSet.getString("last_name"));
+				  System.out.println(resultSet.getString("mobile_number"));
+				  
+				  }
+				 
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		
