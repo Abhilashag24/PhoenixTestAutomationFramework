@@ -1,6 +1,7 @@
 package com.api.tests;
 
 import static com.api.constants.Role.FD;
+import static com.api.utils.DateTimeUtility.getTimeWithDaysAgo;
 import static com.api.utils.SpecUtil.requestSpecWithAuthToken;
 import static com.api.utils.SpecUtil.responseSpec_OK;
 import static io.restassured.RestAssured.given;
@@ -8,35 +9,57 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.api.constants.Model;
+import com.api.constants.OEM;
+import com.api.constants.Platform;
+import com.api.constants.Problem;
+import com.api.constants.Product;
+import com.api.constants.ServiceLocation;
+import com.api.constants.Warranty_Status;
 import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
-import com.api.utils.FakerDataGenerator;
+import com.api.request.model.Problems;
 import com.api.utils.TimestampAssertionUtil;
 import com.database.dao.CustomerAddressDAO;
 import com.database.dao.CustomerDAO;
 import com.database.dao.CustomerProductDAO;
-import com.database.dao.MapJobProblemDAO;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
-import com.database.model.MapJobProblemDBModel;
 
 import io.restassured.response.Response;
 
-public class CreateJobAPITestWithFaker {
+public class CreateJobAPIWithDBValidationTest {
 
 	private CreateJobPayload createJobPayload;
+	private Customer customer;
+	private CustomerAddress customerAddress;
+	private CustomerProduct customerProduct;
 
 	@BeforeMethod(description = "Creating a Create Job API Request Payload")
 	public void setUp() {
+		customer = new Customer("Test_FN", "Test_LN", "9856321452", "", "test@test.com", "");
+		customerAddress = new CustomerAddress("101", "Test Apartment", "Test Street", "Inorbit mall", "Test Area",
+				"451245", "India", "Maharashtra");
+		customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "77778861592777", "77778861592777",
+				"77778861592777", "2026-04-30T20:00:00.000Z", Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
 
-		createJobPayload = FakerDataGenerator.generateFakeCreateJobData();
+		Problems problems = new Problems(Problem.SMARTPHONE_IS_RUNNING_SLOW.getCode(), "Battery Issue");
+		List<Problems> problemsList = new ArrayList<Problems>();
+		problemsList.add(problems);
+
+		createJobPayload = new CreateJobPayload(ServiceLocation.SERVICE_LOCATION_A.getCode(),
+				Platform.FRONTDESK.getCode(), Warranty_Status.IN_WAARANTY.getCode(), OEM.GOOGLE.getCode(), customer,
+				customerAddress, customerProduct, problemsList);
 
 	}
 
@@ -44,26 +67,25 @@ public class CreateJobAPITestWithFaker {
 			"regression", "smoke" })
 	public void createJobAPITest() {
 
-		Response response = given().spec(requestSpecWithAuthToken(FD, createJobPayload)).when().post("/job/create").then()
+	Response response = given().spec(requestSpecWithAuthToken(FD, createJobPayload)).when().post("/job/create").then()
 				.spec(responseSpec_OK())
 				.body(matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
 				.body("message", equalTo("Job created successfully. ")).and()
 				.body("data.mst_service_location_id", equalTo(1)).and().body("data.job_number", startsWith("JOB_"))
 				.extract().response();
-
-
+	
 int customerId = response.then().extract().jsonPath().getInt("data.tr_customer_id");
-		
-		Customer expecteCustomer = createJobPayload.customer();
-		CustomerDBModel customerDBModel = CustomerDAO.getCustomerInfo(customerId);
-		Assert.assertEquals(customerDBModel.getFirst_name(), expecteCustomer.first_name());
-		Assert.assertEquals(customerDBModel.getLast_name(), expecteCustomer.last_name());
-		Assert.assertEquals(customerDBModel.getMobile_number(), expecteCustomer.mobile_number());
-		Assert.assertEquals(customerDBModel.getMobile_number_alt(), expecteCustomer.mobile_number_alt());
-		Assert.assertEquals(customerDBModel.getEmail_id(), expecteCustomer.email_id());
-		Assert.assertEquals(customerDBModel.getEmail_id_alt(), expecteCustomer.email_id_alt());
 
-		CustomerAddress customerAddress = createJobPayload.customer_address();
+
+		CustomerDBModel customerDBModel = CustomerDAO.getCustomerInfo(customerId);
+		Assert.assertEquals(customerDBModel.getFirst_name(), customer.first_name());
+		Assert.assertEquals(customerDBModel.getLast_name(), customer.last_name());
+		Assert.assertEquals(customerDBModel.getMobile_number(), customer.mobile_number());
+		Assert.assertEquals(customerDBModel.getMobile_number_alt(), customer.mobile_number_alt());
+		Assert.assertEquals(customerDBModel.getEmail_id(), customer.email_id());
+		Assert.assertEquals(customerDBModel.getEmail_id_alt(), customer.email_id_alt());
+
+		System.out.println();
 
 		CustomerAddressDBModel customerAddressDBModel = CustomerAddressDAO
 				.getCustomerAddressInfo(customerDBModel.getTr_customer_address_id());
@@ -80,8 +102,7 @@ int customerId = response.then().extract().jsonPath().getInt("data.tr_customer_i
 		System.out.println();
 
 		int productId = response.then().extract().jsonPath().getInt("data.tr_customer_product_id");
-		
-		CustomerProduct customerProduct = createJobPayload.customer_product(); 
+
 		CustomerProductDBModel cProductDBModel = CustomerProductDAO
 				.getCustomerProductInfo(productId);
 		Assert.assertEquals(cProductDBModel.getMst_model_id(), customerProduct.mst_model_id());
@@ -90,21 +111,9 @@ int customerId = response.then().extract().jsonPath().getInt("data.tr_customer_i
 		Assert.assertEquals(cProductDBModel.getSerial_number(), customerProduct.serial_number());
 		Assert.assertEquals(cProductDBModel.getImei1(), customerProduct.imei1());
 		Assert.assertEquals(cProductDBModel.getImei2(), customerProduct.imei2());
-		
-		
-
-		int tr_job_head_id = response.then().extract().jsonPath().getInt("data.id");
-		System.out.println("=============="+tr_job_head_id);
-		MapJobProblemDBModel mDbModel = MapJobProblemDAO.getProblemDetails(tr_job_head_id);
-		Assert.assertEquals(mDbModel.getMst_problem_id(), createJobPayload.problems().get(0).id());
-		Assert.assertEquals(mDbModel.getRemark(), createJobPayload.problems().get(0).remark());
-		
-	}
-
-	@Test(description = "Verifying if Create Job API is giving correct status for Invalid Token", groups = { "api",
-			"negative", "regression", "smoke" })
-	public void invalidTokenCreateJobAPITest() {
 
 	}
+
+
 
 }

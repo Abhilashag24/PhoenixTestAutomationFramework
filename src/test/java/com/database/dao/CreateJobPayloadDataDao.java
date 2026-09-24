@@ -56,7 +56,7 @@ imei2 IS NOT NULL and
 serial_number IS NOT NULL
 limit 5;			""";
 
-
+private CreateJobPayloadDataDao() {}
 public static List<CreateJobBean> getCreatePayloadData() {
 	Connection conn =null;
 	Statement statement;
