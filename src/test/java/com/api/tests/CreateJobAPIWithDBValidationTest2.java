@@ -33,9 +33,11 @@ import com.api.utils.TimestampAssertionUtil;
 import com.database.dao.CustomerAddressDAO;
 import com.database.dao.CustomerDAO;
 import com.database.dao.CustomerProductDAO;
+import com.database.dao.MapJobProblemDAO;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
+import com.database.model.MapJobProblemDBModel;
 
 import io.restassured.response.Response;
 
@@ -45,16 +47,17 @@ public class CreateJobAPIWithDBValidationTest2 {
 	private Customer customer;
 	private CustomerAddress customerAddress;
 	private CustomerProduct customerProduct;
+	private Problems problems;
 
 	@BeforeMethod(description = "Creating a Create Job API Request Payload")
 	public void setUp() {
 		customer = new Customer("Test_FN", "Test_LN", "9856321452", "", "test@test.com", "");
 		customerAddress = new CustomerAddress("101", "Test Apartment", "Test Street", "Inorbit mall", "Test Area",
 				"451245", "India", "Maharashtra");
-		customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "77568861592777", "77568861592777",
-				"77568861592777", "2026-04-30T20:00:00.000Z", Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
+		customerProduct = new CustomerProduct(getTimeWithDaysAgo(10), "77567861592517", "77567861592517",
+				"77567861592517", "2026-04-30T20:00:00.000Z", Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
 
-		Problems problems = new Problems(Problem.SMARTPHONE_IS_RUNNING_SLOW.getCode(), "Battery Issue");
+		problems = new Problems(Problem.SMARTPHONE_IS_RUNNING_SLOW.getCode(), "Battery Issue");
 		List<Problems> problemsList = new ArrayList<Problems>();
 		problemsList.add(problems);
 
@@ -68,16 +71,16 @@ public class CreateJobAPIWithDBValidationTest2 {
 			"regression", "smoke" })
 	public void createJobAPITest() {
 
-	CreateJobResponseModel createJobResponseModel = given().spec(requestSpecWithAuthToken(FD, createJobPayload)).when().post("/job/create").then()
-				.spec(responseSpec_OK())
+		CreateJobResponseModel createJobResponseModel = given().spec(requestSpecWithAuthToken(FD, createJobPayload))
+				.when().post("/job/create").then().spec(responseSpec_OK())
 				.body(matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
 				.body("message", equalTo("Job created successfully. ")).and()
 				.body("data.mst_service_location_id", equalTo(1)).and().body("data.job_number", startsWith("JOB_"))
 				.extract().as(CreateJobResponseModel.class);
-	
+
 // int customerId = response.then().extract().jsonPath().getInt("data.tr_customer_id");
 
-	int customerId = createJobResponseModel.getData().getTr_customer_id();
+		int customerId = createJobResponseModel.getData().getTr_customer_id();
 		CustomerDBModel customerDBModel = CustomerDAO.getCustomerInfo(customerId);
 		Assert.assertEquals(customerDBModel.getFirst_name(), customer.first_name());
 		Assert.assertEquals(customerDBModel.getLast_name(), customer.last_name());
@@ -104,8 +107,7 @@ public class CreateJobAPIWithDBValidationTest2 {
 
 		int productId = createJobResponseModel.getData().getTr_customer_product_id();
 
-		CustomerProductDBModel cProductDBModel = CustomerProductDAO
-				.getCustomerProductInfo(productId);
+		CustomerProductDBModel cProductDBModel = CustomerProductDAO.getCustomerProductInfo(productId);
 		Assert.assertEquals(cProductDBModel.getMst_model_id(), customerProduct.mst_model_id());
 		TimestampAssertionUtil.assertTimestampEqualsExact(cProductDBModel.getDop(), customerProduct.dop());
 		Assert.assertEquals(cProductDBModel.getPopurl(), customerProduct.popurl());
@@ -113,8 +115,12 @@ public class CreateJobAPIWithDBValidationTest2 {
 		Assert.assertEquals(cProductDBModel.getImei1(), customerProduct.imei1());
 		Assert.assertEquals(cProductDBModel.getImei2(), customerProduct.imei2());
 
+		int tr_job_head_id = createJobResponseModel.getData().getId();
+		System.out.println("=============="+tr_job_head_id);
+		MapJobProblemDBModel mDbModel = MapJobProblemDAO.getProblemDetails(tr_job_head_id);
+		Assert.assertEquals(mDbModel.getMst_problem_id(), createJobPayload.problems().get(0).id());
+		Assert.assertEquals(mDbModel.getRemark(), createJobPayload.problems().get(0).remark());
+
 	}
-
-
 
 }

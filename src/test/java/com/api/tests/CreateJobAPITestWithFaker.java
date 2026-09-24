@@ -21,9 +21,11 @@ import com.api.utils.TimestampAssertionUtil;
 import com.database.dao.CustomerAddressDAO;
 import com.database.dao.CustomerDAO;
 import com.database.dao.CustomerProductDAO;
+import com.database.dao.MapJobProblemDAO;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
+import com.database.model.MapJobProblemDBModel;
 
 import io.restassured.response.Response;
 
@@ -88,6 +90,15 @@ int customerId = response.then().extract().jsonPath().getInt("data.tr_customer_i
 		Assert.assertEquals(cProductDBModel.getSerial_number(), customerProduct.serial_number());
 		Assert.assertEquals(cProductDBModel.getImei1(), customerProduct.imei1());
 		Assert.assertEquals(cProductDBModel.getImei2(), customerProduct.imei2());
+		
+		
+
+		int tr_job_head_id = response.then().extract().jsonPath().getInt("data.id");
+		System.out.println("=============="+tr_job_head_id);
+		MapJobProblemDBModel mDbModel = MapJobProblemDAO.getProblemDetails(tr_job_head_id);
+		Assert.assertEquals(mDbModel.getMst_problem_id(), createJobPayload.problems().get(0).id());
+		Assert.assertEquals(mDbModel.getRemark(), createJobPayload.problems().get(0).remark());
+		
 	}
 
 	@Test(description = "Verifying if Create Job API is giving correct status for Invalid Token", groups = { "api",
