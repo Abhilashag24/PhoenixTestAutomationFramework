@@ -16,11 +16,13 @@ import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
+import com.api.response.model.TRJobHeadDBModel;
 import com.api.utils.FakerDataGenerator;
 import com.api.utils.TimestampAssertionUtil;
 import com.database.dao.CustomerAddressDAO;
 import com.database.dao.CustomerDAO;
 import com.database.dao.CustomerProductDAO;
+import com.database.dao.JobHeadDAO;
 import com.database.dao.MapJobProblemDAO;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
@@ -96,8 +98,15 @@ int customerId = response.then().extract().jsonPath().getInt("data.tr_customer_i
 		int tr_job_head_id = response.then().extract().jsonPath().getInt("data.id");
 		System.out.println("=============="+tr_job_head_id);
 		MapJobProblemDBModel mDbModel = MapJobProblemDAO.getProblemDetails(tr_job_head_id);
-		Assert.assertEquals(mDbModel.getMst_problem_id(), createJobPayload.problems().get(0).id());
-		Assert.assertEquals(mDbModel.getRemark(), createJobPayload.problems().get(0).remark());
+		Assert.assertEquals(mDbModel.getMst_problem_id(), createJobPayload.problems().getLast().id());
+		Assert.assertEquals(mDbModel.getRemark(), createJobPayload.problems().getLast().remark());
+		
+		TRJobHeadDBModel tHeadDBModel = JobHeadDAO.getJobHeadDetails(customerId);
+		Assert.assertEquals(tHeadDBModel.getMst_oem_id(), createJobPayload.mst_oem_id());
+		Assert.assertEquals(tHeadDBModel.getMst_service_location_id(), createJobPayload.mst_service_location_id());
+		Assert.assertEquals(tHeadDBModel.getMst_warrenty_status_id(), createJobPayload.mst_warrenty_status_id());
+		Assert.assertEquals(tHeadDBModel.getMst_platform_id(), createJobPayload.mst_platform_id()); 
+
 		
 	}
 

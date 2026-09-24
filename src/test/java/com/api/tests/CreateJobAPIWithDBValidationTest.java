@@ -28,10 +28,12 @@ import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
+import com.api.response.model.TRJobHeadDBModel;
 import com.api.utils.TimestampAssertionUtil;
 import com.database.dao.CustomerAddressDAO;
 import com.database.dao.CustomerDAO;
 import com.database.dao.CustomerProductDAO;
+import com.database.dao.JobHeadDAO;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
@@ -111,6 +113,13 @@ int customerId = response.then().extract().jsonPath().getInt("data.tr_customer_i
 		Assert.assertEquals(cProductDBModel.getSerial_number(), customerProduct.serial_number());
 		Assert.assertEquals(cProductDBModel.getImei1(), customerProduct.imei1());
 		Assert.assertEquals(cProductDBModel.getImei2(), customerProduct.imei2());
+		
+		
+		TRJobHeadDBModel tHeadDBModel = JobHeadDAO.getJobHeadDetails(customerId);
+		Assert.assertEquals(tHeadDBModel.getMst_oem_id(), createJobPayload.mst_oem_id());
+		Assert.assertEquals(tHeadDBModel.getMst_service_location_id(), createJobPayload.mst_service_location_id());
+		Assert.assertEquals(tHeadDBModel.getMst_warrenty_status_id(), createJobPayload.mst_warrenty_status_id());
+		Assert.assertEquals(tHeadDBModel.getMst_platform_id(), createJobPayload.mst_platform_id()); 
 
 	}
 
