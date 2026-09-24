@@ -1,6 +1,7 @@
 package com.api.utils;
 
 import java.time.Instant;
+import java.time.ZoneOffset;
 import java.time.temporal.ChronoUnit;
 
 public class DateTimeUtility {
@@ -13,6 +14,7 @@ public class DateTimeUtility {
 	public static String getTimeWithDaysAgo(int days) {
 
 		
-		return  Instant.now().minus(days, ChronoUnit.DAYS).toString();
+		return  Instant.now().minus(days, ChronoUnit.DAYS).atZone(ZoneOffset.UTC).toLocalDate()
+		        .atStartOfDay(ZoneOffset.UTC).toString();
 	}
 }
