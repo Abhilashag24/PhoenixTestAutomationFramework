@@ -7,11 +7,15 @@ import com.api.utils.ConfigManager;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import groovyjarjarantlr4.v4.codegen.model.dbg;
+import io.github.cdimascio.dotenv.Dotenv;
+
 public class DataBaseManager {
 
-	private static final String DB_URL = ConfigManager.getProperty("DB_URL");
-	private static final String DB_USERNAME = ConfigManager.getProperty("DB_USERNAME");
-	private static final String DB_PASSWORD = ConfigManager.getProperty("DB_PASSWORD");
+	static Dotenv dotenv = Dotenv.load();
+	private static final String DB_URL = dotenv.get("DB_URL");
+	private static final String DB_USERNAME = dotenv.get("DB_USERNAME");
+	private static final String DB_PASSWORD = dotenv.get("DB_PASSWORD");
 	private static final int MAX_POOL_SIZE = Integer.parseInt(ConfigManager.getProperty("MAX_POOL_SIZE"));
 	private static final int MIN_IDLE_COUNT = Integer.parseInt(ConfigManager.getProperty("MIN_IDLE_COUNT"));
 	private static final int CONNECTION_TIMEOUT_IN_SEC = Integer
