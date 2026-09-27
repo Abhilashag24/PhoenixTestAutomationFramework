@@ -1,4 +1,4 @@
-package com.api.tests;
+package com.api.tests.datadriven;
 
 import static com.api.constants.Role.FD;
 import static com.api.utils.DateTimeUtility.getTimeWithDaysAgo;
