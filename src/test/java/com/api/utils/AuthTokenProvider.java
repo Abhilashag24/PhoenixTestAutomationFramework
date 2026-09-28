@@ -6,6 +6,9 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.lessThan;
 
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 import com.api.constants.Role;
 import com.api.request.model.UserCredentials;
 
@@ -13,11 +16,16 @@ import io.restassured.http.ContentType;
 
 public final class AuthTokenProvider {
 
+	private static Map<Role,String> tokencache = new ConcurrentHashMap<Role,String>();
+	
 	private AuthTokenProvider() {
 
 	}
 
 	public static String getToken(Role role) {
+		if(tokencache.containsKey(role)) {
+			return tokencache.get(role);
+		}
 
 		UserCredentials userCredentials = null;
 
@@ -35,6 +43,8 @@ public final class AuthTokenProvider {
 				.body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json")).extract().response()
 				.jsonPath().getString("data.token");
 
+		tokencache.put(role, token);
+		
 		return token;
 	}
 
