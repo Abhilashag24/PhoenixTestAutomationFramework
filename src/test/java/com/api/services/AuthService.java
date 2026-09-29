@@ -6,7 +6,7 @@ import static io.restassured.RestAssured.given;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.api.request.model.UserCredentials;
+import com.dataproviders.api.bean.UserBean;
 
 import io.restassured.response.Response;
 
@@ -18,7 +18,7 @@ public class AuthService {
 	private static final String LOGIN_ENDPOINT = "/login";
 	
 	public Response login(Object userCredentials) {
-		LOGGER.info("Making log in request for the payload {}" ,((UserCredentials)userCredentials).username());
+		LOGGER.info("Making log in request for the payload {}" ,((UserBean)userCredentials).getUsername());
 		return given().spec(requestSpec(userCredentials)).when().post(LOGIN_ENDPOINT);
 		
 	}
