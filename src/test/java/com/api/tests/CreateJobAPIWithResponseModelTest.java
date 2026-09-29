@@ -1,10 +1,9 @@
-package com.api.tests.datadriven;
+package com.api.tests;
 
 import static com.api.constants.Role.FD;
 import static com.api.utils.DateTimeUtility.getTimeWithDaysAgo;
-import static com.api.utils.SpecUtil.requestSpecWithAuthToken;
 import static com.api.utils.SpecUtil.responseSpec_OK;
-import static io.restassured.RestAssured.given;
+import static com.api.utils.SpecUtil.responseSpec_TEXT;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
@@ -29,6 +28,7 @@ import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
 import com.api.response.model.CreateJobResponseModel;
+import com.api.services.JobService;
 import com.api.utils.TimestampAssertionUtil;
 import com.database.dao.CustomerAddressDAO;
 import com.database.dao.CustomerDAO;
@@ -39,8 +39,6 @@ import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
 import com.database.model.MapJobProblemDBModel;
 
-import io.restassured.response.Response;
-
 public class CreateJobAPIWithResponseModelTest {
 
 	private CreateJobPayload createJobPayload;
@@ -48,8 +46,9 @@ public class CreateJobAPIWithResponseModelTest {
 	private CustomerAddress customerAddress;
 	private CustomerProduct customerProduct;
 	private Problems problems;
+	private JobService jobService;
 
-	@BeforeMethod(description = "Creating a Create Job API Request Payload")
+	@BeforeMethod(description = "Creating a Create Job API Request Payload and instantiating Job Service")
 	public void setUp() {
 		customer = new Customer("Test_FN", "Test_LN", "9856321452", "", "test@test.com", "");
 		customerAddress = new CustomerAddress("101", "Test Apartment", "Test Street", "Inorbit mall", "Test Area",
@@ -65,14 +64,14 @@ public class CreateJobAPIWithResponseModelTest {
 				Platform.FRONTDESK.getCode(), Warranty_Status.IN_WAARANTY.getCode(), OEM.GOOGLE.getCode(), customer,
 				customerAddress, customerProduct, problemsList);
 
+		jobService = new JobService();
 	}
 
 	@Test(description = "Verifying if Create Job API is able to create In-Warranty Jobs", groups = { "api",
 			"regression", "smoke" })
 	public void createJobAPITest() {
 
-		CreateJobResponseModel createJobResponseModel = given().spec(requestSpecWithAuthToken(FD, createJobPayload))
-				.when().post("/job/create").then().spec(responseSpec_OK())
+		CreateJobResponseModel createJobResponseModel = jobService.create(FD,createJobPayload).then().spec(responseSpec_OK())
 				.body(matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
 				.body("message", equalTo("Job created successfully. ")).and()
 				.body("data.mst_service_location_id", equalTo(1)).and().body("data.job_number", startsWith("JOB_"))
@@ -121,6 +120,11 @@ public class CreateJobAPIWithResponseModelTest {
 		Assert.assertEquals(mDbModel.getMst_problem_id(), createJobPayload.problems().get(0).id());
 		Assert.assertEquals(mDbModel.getRemark(), createJobPayload.problems().get(0).remark());
 
+	}
+
+	@Test (description = "Verifying if Create Job API is giving correct status for Invalid Token", groups = { "api","negative", "regression", "smoke" })
+	public void invalidTokenCreateJobAPITest() {
+		jobService.create().then().spec(responseSpec_TEXT(401));
 	}
 
 }

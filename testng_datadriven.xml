@@ -20,7 +20,7 @@
 			<class
 				name="com.api.tests.datadriven.CreateJobAPIDBDataDrivenTest" />				
 			<class
-				name="com.api.tests.datadriven.CreateJobAPIWithResponseModelTest" />
+				name="com.api.tests.CreateJobAPIWithResponseModelTest" />
 
 		</classes>
 	</test>
