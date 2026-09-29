@@ -9,12 +9,17 @@ import static org.hamcrest.Matchers.lessThan;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.api.constants.Role;
 import com.api.request.model.UserCredentials;
 
 import io.restassured.http.ContentType;
 
 public final class AuthTokenProvider {
+
+	private static final Logger LOGGER = LogManager.getLogger(AuthTokenProvider.class);
 
 	private static Map<Role,String> tokencache = new ConcurrentHashMap<Role,String>();
 	
@@ -23,9 +28,12 @@ public final class AuthTokenProvider {
 	}
 
 	public static String getToken(Role role) {
+		LOGGER.info("Checking if the token for {} is present in the cache",role);
 		if(tokencache.containsKey(role)) {
+			LOGGER.info("Token found for {}",role);
 			return tokencache.get(role);
 		}
+		LOGGER.info("Token not found ,making the login request for the role {}",role);
 
 		UserCredentials userCredentials = null;
 
@@ -42,6 +50,8 @@ public final class AuthTokenProvider {
 				.time(lessThan(2000L)).and()
 				.body(matchesJsonSchemaInClasspath("response-schema/LoginResponseSchema.json")).extract().response()
 				.jsonPath().getString("data.token");
+
+		LOGGER.info("Token cached for future requests");
 
 		tokencache.put(role, token);
 		
