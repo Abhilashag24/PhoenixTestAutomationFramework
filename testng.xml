@@ -9,9 +9,16 @@
 			<class name="com.api.tests.CountAPITest" />
 			<class name="com.api.tests.FDMasterAPIRequestTest" />
 			<class name="com.api.tests.CreateJobAPITest" />
+			<class name="com.api.tests.CreateJobAPITestWithFaker" />
+			<class name="com.api.tests.CreateJobAPIWithDBValidationTest" />
 			<class name="com.api.tests.CreateJobAPIWithResponseModelTest" />
+			<class name="com.api.tests.DetailsAPITest" />
+			<class name="com.api.tests.SearchAPITest" />
+
+
+
 
 		</classes>
 	</test>
 
-</suite>
+</suite> 
