@@ -1,9 +1,8 @@
 package com.api.tests;
 
 import static com.api.constants.Role.FD;
-import static com.api.utils.SpecUtil.requestSpecWithAuthToken;
 import static com.api.utils.SpecUtil.responseSpec_OK;
-import static io.restassured.RestAssured.given;
+import static com.api.utils.SpecUtil.responseSpec_TEXT;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.startsWith;
@@ -16,6 +15,7 @@ import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
+import com.api.services.JobService;
 import com.api.utils.FakerDataGenerator;
 import com.api.utils.TimestampAssertionUtil;
 import com.database.dao.CustomerAddressDAO;
@@ -32,11 +32,14 @@ import io.restassured.response.Response;
 public class CreateJobAPITestWithFaker {
 
 	private CreateJobPayload createJobPayload;
+	private JobService jobService;
 
-	@BeforeMethod(description = "Creating a Create Job API Request Payload")
+	@BeforeMethod(description = "Creating a Create Job API Request Payload and instantiating Job Service")
 	public void setUp() {
 
 		createJobPayload = FakerDataGenerator.generateFakeCreateJobData();
+		
+		jobService = new JobService();
 
 	}
 
@@ -44,7 +47,7 @@ public class CreateJobAPITestWithFaker {
 			"regression", "smoke" })
 	public void createJobAPITest() {
 
-		Response response = given().spec(requestSpecWithAuthToken(FD, createJobPayload)).when().post("/job/create").then()
+		Response response = jobService.create(FD, createJobPayload).then()
 				.spec(responseSpec_OK())
 				.body(matchesJsonSchemaInClasspath("response-schema/CreateJobAPIResponseSchema.json"))
 				.body("message", equalTo("Job created successfully. ")).and()
@@ -104,7 +107,7 @@ int customerId = response.then().extract().jsonPath().getInt("data.tr_customer_i
 	@Test(description = "Verifying if Create Job API is giving correct status for Invalid Token", groups = { "api",
 			"negative", "regression", "smoke" })
 	public void invalidTokenCreateJobAPITest() {
-
+		jobService.create().then().spec(responseSpec_TEXT(401));
 	}
 
 }
