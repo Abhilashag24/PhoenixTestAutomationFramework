@@ -5,12 +5,14 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.hamcrest.Matchers.equalTo;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.services.AuthService;
 import com.dataproviders.api.bean.UserBean;
 
-public class FDLoginAPITest {
+@Listeners(com.listeners.APITestListener.class)
+public class FDLoginAPITest{
 
 	private UserBean userCredentials;
 	private AuthService authService;
