@@ -6,6 +6,7 @@ import static com.api.utils.ConfigManager.*;
 import org.hamcrest.Matchers;
 
 import com.api.constants.Role;
+import com.api.filters.SensitiveDataFilter;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -27,8 +28,9 @@ public class SpecUtil {
 	// POST -- PUT -- PATCH (Body)
 	public static RequestSpecification requestSpec(Object payload) {
 		RequestSpecification request = new RequestSpecBuilder().setBaseUri(getProperty("BASE_URI"))
-				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(payload).log(LogDetail.URI)
-				.log(LogDetail.METHOD).log(LogDetail.HEADERS).log(LogDetail.BODY).build();
+				.setContentType(ContentType.JSON).setAccept(ContentType.JSON).setBody(payload)
+				.addFilter(new SensitiveDataFilter()).log(LogDetail.URI)
+				.log(LogDetail.METHOD).log(LogDetail.HEADERS).build();
 
 		return request;
 	}
@@ -53,7 +55,7 @@ public class SpecUtil {
 
 	public static ResponseSpecification responseSpec_OK() {
 		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectStatusCode(200)
-				.expectResponseTime(Matchers.lessThan(1000L)).expectContentType(ContentType.JSON).log(LogDetail.ALL)
+				.expectResponseTime(Matchers.lessThan(1000L)).expectContentType(ContentType.JSON)
 				.build();
 
 		return responseSpecification;
@@ -61,7 +63,7 @@ public class SpecUtil {
 
 	public static ResponseSpecification responseSpec_JSON(int statusCode) {
 		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectStatusCode(statusCode)
-				.expectResponseTime(Matchers.lessThan(1000L)).expectContentType(ContentType.JSON).log(LogDetail.ALL)
+				.expectResponseTime(Matchers.lessThan(1000L)).expectContentType(ContentType.JSON)
 				.build();
 
 		return responseSpecification;
@@ -69,7 +71,7 @@ public class SpecUtil {
 
 	public static ResponseSpecification responseSpec_TEXT(int statusCode) {
 		ResponseSpecification responseSpecification = new ResponseSpecBuilder().expectStatusCode(statusCode)
-				.expectResponseTime(Matchers.lessThan(1000L)).log(LogDetail.ALL).build();
+				.expectResponseTime(Matchers.lessThan(1000L)).build();
 
 		return responseSpecification;
 	}
