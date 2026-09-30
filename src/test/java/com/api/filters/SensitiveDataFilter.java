@@ -40,19 +40,16 @@ public class SensitiveDataFilter implements Filter {
 	public void redactHeader(FilterableRequestSpecification requestSpec) {
 		List<Header> headerList = requestSpec.getHeaders().asList();
 		for (Header header : headerList) {
-			
-			if(header.getName().equalsIgnoreCase("Authorization")) {
-				LOGGER.info("HEADER  {}  :  {}",header.getName(),"\"[REDACTED]\"");
-			}else {
-				LOGGER.info("HEADER  {}  :  {}",header.getName() ,header.getValue());
+
+			if (header.getName().equalsIgnoreCase("Authorization")) {
+				LOGGER.info("HEADER  {}  :  {}", header.getName(), "\"[REDACTED]\"");
+			} else {
+				LOGGER.info("HEADER  {}  :  {}", header.getName(), header.getValue());
 
 			}
 		}
 
 	}
-
-	// Create a method which is going to redact/hide the password from the request
-	// payload
 
 	public void readactPayload(FilterableRequestSpecification requestSpec) {
 		if (requestSpec.getBody() != null) {
