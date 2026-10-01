@@ -6,11 +6,9 @@ import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class TimestampAssertionUtil {
-	 private static final DateTimeFormatter ISO = DateTimeFormatter.ISO_INSTANT;
 
 	    /**
 	     * Safely parses any timestamp:

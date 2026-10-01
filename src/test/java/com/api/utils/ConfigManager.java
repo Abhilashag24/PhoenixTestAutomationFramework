@@ -7,13 +7,15 @@ import java.util.Properties;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import io.qameta.allure.Step;
+
 public final class ConfigManager {
 
 	private static final Logger LOGGER = LogManager.getLogger(ConfigManager.class);
 
 	private static String path = "config/config.properties";
 	private static Properties properties = new Properties();
-	private static String env;
+	public static String env;
 
 	static {
 		LOGGER.info("Reading env value passed from the terminal");
@@ -60,6 +62,7 @@ public final class ConfigManager {
 
 	}
 
+	@Step("Getting the property value from Config file")
 	public static String getProperty(String key) {
 
 		return properties.getProperty(key);
