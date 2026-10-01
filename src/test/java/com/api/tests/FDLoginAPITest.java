@@ -21,7 +21,7 @@ import io.qameta.allure.Story;
 @Listeners(com.listeners.APITestListener.class)
 @Epic("User Management")
 @Feature("Authentication")
-public class FDLoginAPITest{
+public class FDLoginAPITest {
 
 	private UserBean userCredentials;
 	private AuthService authService;
@@ -36,7 +36,8 @@ public class FDLoginAPITest{
 	@Story("Valid user should be able to login into the System")
 	@Description("Verify if FD User is able to login via API")
 	@Severity(SeverityLevel.BLOCKER)
-	@Test(description = "Verifying if login api is working for FD user", groups = { "api", "regression", "smoke" })
+	@Test(description = "Verifying if login api is working for FD user", groups = { "api", "regression",
+			"smoke" }, retryAnalyzer = com.api.retry.RetryAnalyzer.class)
 
 	public void loginAPITest() {
 
