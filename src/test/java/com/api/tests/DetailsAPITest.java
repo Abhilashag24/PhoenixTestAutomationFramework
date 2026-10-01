@@ -10,6 +10,16 @@ import com.api.request.model.Detail;
 import com.api.services.DashboardService;
 import com.api.utils.SpecUtil;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
+
+
+@Epic("Job Management")
+@Feature("Job Details")
 @Listeners(com.listeners.APITestListener.class)
 
 public class DetailsAPITest {
@@ -25,6 +35,9 @@ public class DetailsAPITest {
 		detailPayload =  new Detail("created_today");
 	}
 	
+	@Story("Job Details is shown correctly for FD")
+	@Description("Verifying if Details Job API is able to create In-Warranty Jobs")
+	@Severity(SeverityLevel.CRITICAL)
 	@Test (description = "Verifying if Details Job API is able to create In-Warranty Jobs", groups = { "api", "regression", "smoke" })
 	public void detailsAPITest() {
 		
