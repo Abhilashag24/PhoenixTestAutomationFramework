@@ -10,7 +10,6 @@ import org.apache.logging.log4j.Logger;
 import org.testng.annotations.DataProvider;
 
 import com.api.request.model.CreateJobPayload;
-import com.api.request.model.UserCredentials;
 import com.api.utils.CSVReaderUtility;
 import com.api.utils.CreateJobBeanMapper;
 import com.api.utils.ExcelReaderUtil;

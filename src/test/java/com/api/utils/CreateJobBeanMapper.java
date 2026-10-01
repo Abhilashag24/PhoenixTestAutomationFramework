@@ -13,7 +13,9 @@ import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
 import com.api.request.model.UserCredentials;
 import com.api.services.AuthService;
-import com.dataproviders.api.bean.CreateJobBean;	
+import com.dataproviders.api.bean.CreateJobBean;
+
+import io.qameta.allure.Step;	
 
 public class CreateJobBeanMapper {
 	
@@ -24,7 +26,7 @@ public class CreateJobBeanMapper {
 
 	}
 
-	
+	@Step("Converting the Create Job Bean to the Create Job Payload for CreateJob API")
 	public static CreateJobPayload mapper(CreateJobBean bean) {
 		LOGGER.info("Converting Create Job Bean {} to Create job Payload" ,bean);
 
