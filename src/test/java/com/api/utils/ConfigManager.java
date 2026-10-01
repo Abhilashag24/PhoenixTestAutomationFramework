@@ -13,7 +13,7 @@ public final class ConfigManager {
 
 	private static String path = "config/config.properties";
 	private static Properties properties = new Properties();
-	private static String env;
+	public static String env;
 
 	static {
 		LOGGER.info("Reading env value passed from the terminal");
